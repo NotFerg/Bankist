@@ -191,4 +191,29 @@ function checkDogs(j, k) {
 
 checkDogs(julia1, kate1);
 checkDogs(julia2, kate2);
+
+const eurToUsd = 1.1;
+
+// const movementsUSD = movements.map(function (mov) {
+//   return mov * eurToUsd;
+// });
+
+const movementsUSD = movements.map(mov => mov * eurToUsd);
+
+console.log(movements);
+console.log(movementsUSD);
+
+const movementsUSDfor = [];
+for (const mov of movements) {
+  movementsUSDfor.push(mov * eurToUsd);
+}
+console.log(movementsUSDfor);
+
+const movementsDescription = movements.map(
+  (mov, i) =>
+    `Movement ${i + 1} you ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+      mov
+    )}`
+);
+console.log(movementsDescription);
 /////////////////////////////////////////////////
