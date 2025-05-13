@@ -104,4 +104,17 @@ console.log([...arr, ...arr2]);
 
 //JOIN
 console.log(letters.join('-'));
+
+//AT
+const arr3 = [23, 11, 64];
+console.log(arr[0]);
+console.log(arr.at(0));
+
+// last element of arrray
+console.log(arr3[arr3.length - 1]);
+console.log(arr3.slice(-1)[0]);
+console.log(arr.at(-1));
+
+console.log('jonas'.at(0));
+console.log('jonas'.at(-1));
 /////////////////////////////////////////////////
