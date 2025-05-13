@@ -170,4 +170,25 @@ const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
 currenciesUnique.forEach(function (value, key, map) {
   console.log(`${key}: ${value}`);
 });
+
+//CHALLENGE 1
+const julia1 = [3, 5, 2, 12, 7];
+const kate1 = [4, 1, 15, 8, 3];
+const julia2 = [9, 16, 6, 8, 3];
+const kate2 = [10, 5, 6, 1, 4];
+
+function checkDogs(j, k) {
+  const correctedJ = j.slice(1, 3);
+  const combined = correctedJ.concat(k);
+  combined.forEach(function (dog, i) {
+    console.log(
+      `Dog number ${i + 1} is an ${
+        dog <= 3 ? 'puppy' : 'adult'
+      } and is ${dog} years old`
+    );
+  });
+}
+
+checkDogs(julia1, kate1);
+checkDogs(julia2, kate2);
 /////////////////////////////////////////////////
