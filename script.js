@@ -35,6 +35,8 @@ const account4 = {
 
 const accounts = [account1, account2, account3, account4];
 
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
 // Elements
 const labelWelcome = document.querySelector('.welcome');
 const labelDate = document.querySelector('.date');
@@ -118,8 +120,6 @@ const max = movements.reduce((acc, mov) => {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
-
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // for (const movement of movements) {
 //   if (movement > 0) {
@@ -229,6 +229,28 @@ checkDogs(julia1, kate1);
 checkDogs(julia2, kate2);
 
 const eurToUsd = 1.1;
+
+//CHALLENGE 2
+const testData1 = [5, 2, 4, 1, 15, 8, 3];
+const testData2 = [16, 6, 10, 5, 6, 1, 4];
+
+const calcAverageHumanAge = ages => {
+  const humanAge = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
+  const adults = humanAge.filter(age => age >= 18);
+
+  console.log(humanAge);
+  console.log(adults);
+
+  const average = adults.reduce(
+    (acc, age, i, arr) => acc + age / arr.length,
+    0
+  );
+
+  return average;
+};
+
+const avg1 = calcAverageHumanAge(testData1);
+const avg2 = calcAverageHumanAge(testData2);
 
 // const movementsUSD = movements.map(function (mov) {
 //   return mov * eurToUsd;
