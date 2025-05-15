@@ -91,11 +91,29 @@ const createrUsernames = function (accs) {
 
 createrUsernames(accounts);
 
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, move) => acc + move, 0);
+  labelBalance.textContent = `${balance} EUR`;
+};
+
+calcDisplayBalance(account1.movements);
+
 const deposits = movements.filter(function (mov) {
   return mov > 0;
 });
 
 const withdrawals = movements.filter(mov => mov < 0);
+
+// accumulator -> snowball
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`Iteration ${i}: ${acc}`);
+//   acc + cur;
+// }, 0);
+
+const max = movements.reduce((acc, mov) => {
+  if (acc > mov) return acc;
+  else return mov;
+}, movements[0]);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
