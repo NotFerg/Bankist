@@ -90,7 +90,12 @@ const createrUsernames = function (accs) {
 };
 
 createrUsernames(accounts);
-console.log('ACC', accounts);
+
+const deposits = movements.filter(function (mov) {
+  return mov > 0;
+});
+
+const withdrawals = movements.filter(mov => mov < 0);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
