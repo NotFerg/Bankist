@@ -262,8 +262,8 @@ const calcAverageHumanAge = ages => {
   const humanAge = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
   const adults = humanAge.filter(age => age >= 18);
 
-  console.log(humanAge);
-  console.log(adults);
+  // console.log(humanAge);
+  // console.log(adults);
 
   const average = adults.reduce(
     (acc, age, i, arr) => acc + age / arr.length,
@@ -273,8 +273,18 @@ const calcAverageHumanAge = ages => {
   return average;
 };
 
-const avg1 = calcAverageHumanAge(testData1);
+const avg1 = console.log('DATAAA', calcAverageHumanAge(testData1));
 const avg2 = calcAverageHumanAge(testData2);
+
+// Challenge3
+const calcAverageHumanAge2 = ages => {
+  return ages
+    .map(age => (age <= 2 ? 2 * age : 16 + age * 4))
+    .filter(age => age >= 18)
+    .reduce((acc, age, i, arr) => acc + age / arr.length, 0);
+};
+
+const avg3 = console.log('DATAA2', calcAverageHumanAge2(testData1));
 
 // const movementsUSD = movements.map(function (mov) {
 //   return mov * eurToUsd;
