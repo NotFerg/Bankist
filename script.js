@@ -35,6 +35,9 @@ const account4 = {
 
 const accounts = [account1, account2, account3, account4];
 
+//Event Handler
+let currentAccount;
+
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // Elements
@@ -79,7 +82,7 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-displayMovements(account1.movements);
+// displayMovements(account1.movements);
 
 const createrUsernames = function (accs) {
   accs.forEach(function (acc) {
@@ -98,20 +101,20 @@ const calcDisplayBalance = function (movements) {
   labelBalance.textContent = `${balance} 💶`;
 };
 
-calcDisplayBalance(account1.movements);
+// calcDisplayBalance(account1.movements);
 
-const calcDisplaySummary = function (movements) {
-  const incomes = movements
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
 
-  const out = movements
+  const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
 
-  const interest = movements
+  const interest = acc.movements
     .filter(mov => mov > 0)
-    .map(deposit => (deposit * 1.2) / 100)
+    .map(deposit => (deposit * acc.interestRate) / 100)
     .filter((int, i, arr) => {
       // console.log('INTEREST', arr);
       return int >= 1;
@@ -122,7 +125,36 @@ const calcDisplaySummary = function (movements) {
   labelSumOut.textContent = `${Math.abs(out)} 💶`;
   labelSumIn.textContent = `${incomes} 💶`;
 };
-calcDisplaySummary(account1.movements);
+// calcDisplaySummary(account1.movements);
+
+btnLogin.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    //Display UI and message
+    labelWelcome.textContent = `Welcome Back ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+    containerApp.style.opacity = 1;
+
+    //clear fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+
+    //Display movements
+    displayMovements(currentAccount.movements);
+
+    //Display Balance
+    calcDisplayBalance(currentAccount.movements);
+
+    //Display summary
+    calcDisplaySummary(currentAccount);
+  }
+});
 
 const deposits = movements.filter(function (mov) {
   return mov > 0;
